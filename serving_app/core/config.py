@@ -10,7 +10,6 @@
   요청을 받기 전에 서버가 뜨면서 어떤 이름이 문제인지 알려 준다.
 - 셸이나 Docker 에서 준 환경 변수가 .env 의 값보다 먼저 쓰인다.
 """
-###########
 from pathlib import Path
 
 from dotenv import find_dotenv
@@ -76,6 +75,9 @@ class Settings(BaseSettings):
 
     # 예비 모델(OpenAI)의 키. 예비 모델을 쓰는 앱만 쓰므로 기본값은 None 이고, 그 앱이 없으면 멈춘다
     openai_api_key: str | None = None
+
+    # 지금 도는 이미지의 태그(커밋 sha). compose.yaml 의 environment 가 넣고, Langfuse 기록의 version 으로 쓴다(관측 단원 교안 02)
+    image_tag: str = "local"
 
 
 # 여기서 값을 읽는다. 서버가 뜰 때 한 번만 읽으므로, 값을 바꾸려면 서버를 다시 띄운다. 모든 모듈이 이 settings 를 같이 쓴다
